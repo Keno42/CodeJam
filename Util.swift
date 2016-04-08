@@ -18,3 +18,27 @@ func permutations(n:Int, inout _ a:Array<Character>) {
     }
     permutations(n-1,&a)
 }
+
+// regex
+extension String {
+    func rangesOfPattern(pattern: String) -> [Range<Index>] {
+        var result = [Range<Index>]()
+        var range = Range.init(self.startIndex..<self.endIndex)
+        repeat {
+            if let matchedRange = self.rangeOfString(pattern, options: .RegularExpressionSearch, range: range, locale: nil) {
+                if matchedRange.startIndex == matchedRange.endIndex {
+                    range.startIndex = range.startIndex.advancedBy(1)
+                    if range.startIndex == range.endIndex {
+                        break
+                    }
+                } else {
+                    range.startIndex = matchedRange.endIndex
+                    result.append(matchedRange)
+                }
+            } else {
+                break
+            }
+        } while range.isEmpty == false
+        return result
+    }
+}
