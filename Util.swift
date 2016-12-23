@@ -1,5 +1,5 @@
 // http://qiita.com/y_mazun/items/dc2a0cad8da1c0e88a40
-extension String: CollectionType {} // to enable String.split()
+extension String: Collection {} // to enable String.split()
 
 // functions
 func readInt() -> Int { return readLine().flatMap { Int($0) }! }
